@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Contents of CheckOutLog table in LibraryInformation database-->
+<CheckOutLogs>
+  <CheckOutLog>
+    <CheckOutLogID>1</CheckOutLogID>
+    <CardholderID>10</CardholderID>
+    <BookID>3</BookID>
+    <CheckOutDate>2020-11-08T00:00:00</CheckOutDate>
+  </CheckOutLog>
+  <CheckOutLog>
+    <CheckOutLogID>2</CheckOutLogID>
+    <CardholderID>15</CardholderID>
+    <BookID>1</BookID>
+    <CheckOutDate>2020-11-07T00:00:00</CheckOutDate>
+  </CheckOutLog>
+  <CheckOutLog>
+    <CheckOutLogID>3</CheckOutLogID>
+    <CardholderID>16</CardholderID>
+    <BookID>5</BookID>
+    <CheckOutDate>2020-11-06T00:00:00</CheckOutDate>
+  </CheckOutLog>
+</CheckOutLogs>

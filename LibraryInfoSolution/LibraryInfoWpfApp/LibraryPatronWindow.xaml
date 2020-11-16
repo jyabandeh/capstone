@@ -1,0 +1,47 @@
+﻿<Window x:Class="LibraryInfoWpfApp.LibraryPatronWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryInfoWpfApp"
+        mc:Ignorable="d"
+        Title="Library Patron Book Search" Height="632.056" Width="680.076">
+    <Grid>
+        <GroupBox Header="Search by Title, Author, Subject, or ISBN" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="328">
+            <Grid HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="328" Margin="0,0,-12,-13">
+                <TextBox x:Name="SearchPatronTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295"/>
+                <Button x:Name="SearchPatronButton" Content="Search" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="75" Click="SearchPatronButton_Click"/>
+                <Button x:Name="ClearPatronButton" Content="Clear" HorizontalAlignment="Left" Margin="230,48,0,0" VerticalAlignment="Top" Width="75"/>
+                <ListBox x:Name="SearchResultsPatronListBox" HorizontalAlignment="Left" Height="278" Margin="10,90,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="SearchResultsPatronListBox_SelectionChanged"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Selected Book Details" HorizontalAlignment="Left" Height="443" Margin="343,10,0,0" VerticalAlignment="Top" Width="307">
+            <Grid HorizontalAlignment="Left" Height="423" VerticalAlignment="Top" Width="297" Margin="10,10,-12,-13">
+                <Label Content="Author:" HorizontalAlignment="Left" Margin="59,81,0,0" VerticalAlignment="Top"/>
+                <Label Content="ISBN:" HorizontalAlignment="Left" Margin="73,24,0,0" VerticalAlignment="Top"/>
+                <Label Content="Title:" HorizontalAlignment="Left" Margin="76,50,0,0" VerticalAlignment="Top"/>
+                <Label Content="Number of Pages:" HorizontalAlignment="Left" Margin="7,107,0,0" VerticalAlignment="Top"/>
+                <Label Content="Subject:" HorizontalAlignment="Left" Margin="59,133,0,0" VerticalAlignment="Top"/>
+                <Label Content="Publisher:" HorizontalAlignment="Left" Margin="50,159,0,0" VerticalAlignment="Top"/>
+                <Label Content="Year Published:" HorizontalAlignment="Left" Margin="21,185,0,0" VerticalAlignment="Top"/>
+                <Label Content="Language:" HorizontalAlignment="Left" Margin="47,211,0,0" VerticalAlignment="Top"/>
+                <Label Content="Number of Copies:" HorizontalAlignment="Left" Margin="2,237,0,0" VerticalAlignment="Top"/>
+                <Label Content="Description:" HorizontalAlignment="Left" Margin="38,263,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="AuthorTextBox" HorizontalAlignment="Left" Height="23" Margin="116,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="IsbnTextBox" HorizontalAlignment="Left" Height="23" Margin="116,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="TitleTextBox" HorizontalAlignment="Left" Height="23" Margin="116,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="NumPagesTextBox" HorizontalAlignment="Left" Height="23" Margin="116,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="SubjectTextBox" HorizontalAlignment="Left" Height="23" Margin="116,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="PublisherTextBox" HorizontalAlignment="Left" Height="23" Margin="116,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="YearPublishedTextBox" HorizontalAlignment="Left" Height="23" Margin="116,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" Height="23" Margin="116,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="NumCopiesTextBox" HorizontalAlignment="Left" Height="23" Margin="116,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="88" Margin="116,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+                <Label Content="Number Available:" HorizontalAlignment="Left" Margin="2,356,0,0" VerticalAlignment="Top" Height="26" Width="109"/>
+                <TextBox x:Name="NumberAvailableTextBox" HorizontalAlignment="Left" Height="23" Margin="116,359,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="ClosePatronButton" Content="Close" HorizontalAlignment="Left" Margin="575,490,0,0" VerticalAlignment="Top" Width="75" Click="ClosePatronButton_Click"/>
+
+    </Grid>
+</Window>
