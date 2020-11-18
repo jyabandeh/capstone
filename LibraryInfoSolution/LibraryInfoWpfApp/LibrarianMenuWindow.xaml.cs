@@ -72,26 +72,46 @@ namespace LibraryInfoWpfApp
 
         private void SearchResultsLibrarianListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
-            var book = API.GetBook(isbn);
-            if (book != null)
+            if (this.SearchResultsLibrarianListBox.ItemsSource != null)
             {
-                this.IsbnTextBox.Text = book.ISBN;
-                this.TitleTextBox.Text = book.Title;
-                this.AuthorTextBox.Text = $"{book.Author.Person.Firstname} {book.Author.Person.Lastname}";
-                this.NumPagesTextBox.Text = book.NumberPages.ToString();
-                this.SubjectTextBox.Text = book.Subject;
-                this.PublisherTextBox.Text = book.Publisher;
-                this.YearPublishedTextBox.Text = book.YearPublished;
-                this.LanguageTextBox.Text = book.Language;
-                this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
-                this.DescriptionTextBox.Text = book.Description;
-                this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+                string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
+                var book = API.GetBook(isbn);
+                if (book != null)
+                {
+                    this.IsbnTextBox.Text = book.ISBN;
+                    this.TitleTextBox.Text = book.Title;
+                    this.AuthorTextBox.Text = $"{book.Author.Person.Firstname} {book.Author.Person.Lastname}";
+                    this.NumPagesTextBox.Text = book.NumberPages.ToString();
+                    this.SubjectTextBox.Text = book.Subject;
+                    this.PublisherTextBox.Text = book.Publisher;
+                    this.YearPublishedTextBox.Text = book.YearPublished;
+                    this.LanguageTextBox.Text = book.Language;
+                    this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+                    this.DescriptionTextBox.Text = book.Description;
+                    this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Book not found.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Book not found.");
-            }
+        }
+
+        private void ClearLibrarianButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.SearchLibrarianTextBox.Text = null;
+            this.SearchResultsLibrarianListBox.ItemsSource = null;
+            this.IsbnTextBox.Text = null;
+            this.TitleTextBox.Text = null;
+            this.AuthorTextBox.Text = null;
+            this.NumPagesTextBox.Text = null;
+            this.SubjectTextBox.Text = null;
+            this.PublisherTextBox.Text = null;
+            this.YearPublishedTextBox.Text = null;
+            this.LanguageTextBox.Text = null;
+            this.NumCopiesTextBox.Text = null;
+            this.DescriptionTextBox.Text = null;
+            this.NumberAvailableTextBox.Text = null;
         }
     }
 }

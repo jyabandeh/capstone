@@ -80,7 +80,6 @@ namespace LibraryInfoWpfApp
             this.NumCopiesTextBox.Text = null;
             this.DescriptionTextBox.Text = null;
             this.NumberAvailableTextBox.Text = null;
-
         }
     }
 }
