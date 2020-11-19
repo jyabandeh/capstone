@@ -20,7 +20,7 @@ namespace LibraryInfoWpfApp
                 Book b = new Book()
                 {
                     AuthorID = author.ID,
-                    Author = author,
+                    //Author = author,
                     Description = description,
                     ISBN = isbn,
                     Language = language,
