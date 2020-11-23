@@ -26,9 +26,14 @@ namespace LibraryInfoWpfApp
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            LibrarianMenuWindow librarianMenuWindow = new LibrarianMenuWindow();
-            librarianMenuWindow.Show();
-            this.Close();
+            if (API.IsValidLogin(UsernameTextBox.Text, PasswordTextBox.Text))
+            {
+                LibrarianMenuWindow librarianMenuWindow = new LibrarianMenuWindow();
+                librarianMenuWindow.Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Invalid credentials.");
         }
 
         private void LoginCloseButton_Click(object sender, RoutedEventArgs e)

@@ -167,5 +167,18 @@ namespace LibraryInfoWpfApp
                 return db.Authors.Include("Person").OrderBy(a => a.Person.Lastname).ToList();
             }
         }
+
+        public static bool IsValidLogin(string username, string password)
+        {
+            using (var db = new LibraryInfoEntities())
+            {
+                var foundLogin = db.Librarians.Where(a => a.UserID == username && a.Password == password).FirstOrDefault();
+                if (foundLogin != null)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
     }
 }
