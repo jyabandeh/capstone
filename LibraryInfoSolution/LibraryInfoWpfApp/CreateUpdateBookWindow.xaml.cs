@@ -27,10 +27,7 @@ namespace LibraryInfoWpfApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var authors = API.GetAuthors();
-            this.AuthorComboBox.ItemsSource = authors.Select(a => new { a.ID, Name = $"{a.Person.Firstname} {a.Person.Lastname}"}).ToList();
-            this.AuthorComboBox.DisplayMemberPath = "Name";
-            this.AuthorComboBox.SelectedValuePath = "ID";
+            DisplayAuthorsList();
         }
 
         private void AddNewBookButton_Click(object sender, RoutedEventArgs e)
@@ -48,6 +45,26 @@ namespace LibraryInfoWpfApp
             string description = DescriptionTextBox.Text;
             Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
             var book = API.CreateBook(isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
+        }
+
+        private void CreateAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAuthorWindow createAuthorWindow = new CreateAuthorWindow();
+            createAuthorWindow.Show();
+            
+        }
+
+        private void DisplayAuthorsList()
+        {
+            var authors = API.GetAuthors();
+            this.AuthorComboBox.ItemsSource = authors.Select(a => new { a.ID, Name = $"{a.Person.Firstname} {a.Person.Lastname}" }).ToList();
+            this.AuthorComboBox.DisplayMemberPath = "Name";
+            this.AuthorComboBox.SelectedValuePath = "ID";
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            DisplayAuthorsList();
         }
     }
 }

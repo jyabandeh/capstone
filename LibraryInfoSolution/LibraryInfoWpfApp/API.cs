@@ -31,41 +31,46 @@ namespace LibraryInfoWpfApp
                     Title = title,
                     YearPublished = yearPublished
                 };
-
-                var foundAuthor = db.Authors.FirstOrDefault(a => a.Person.Firstname == author.Person.Firstname &&
-                                               a.Person.Lastname == author.Person.Lastname);
-                if (foundAuthor == null)
-                {
-                    b.Author = CreateAuthor(author.Person.Firstname, author.Person.Lastname, author.Bio);
-                    b.AuthorID = b.Author.ID;
-                }
+               
                 db.Books.Add(b);
                 db.SaveChanges();
                 return b;
             }
         }
 
-        internal static Author CreateAuthor(string firstname, string lastname, string bio)
+        public static Author CreateAuthor(string firstname, string lastname, string bio)
         {
             using (var db = new LibraryInfoEntities())
             {
-                Person person = new Person()
-                {
-                    Firstname = firstname,
-                    Lastname = lastname
-                };
-                db.People.Add(person);
-                db.SaveChanges();
+                var foundAuthor = db.Authors.FirstOrDefault(a => a.Person.Firstname == firstname &&
+                                                                 a.Person.Lastname == lastname);
 
-                Author author = new Author
+                if (foundAuthor == null)
                 {
-                    ID = person.PersonID,
-                    Bio = bio
-                };
-                db.Authors.Add(author);
-                db.SaveChanges();
+                    Person person = new Person()
+                    {
+                        Firstname = firstname,
+                        Lastname = lastname
+                    };
+                    db.People.Add(person);
+                    db.SaveChanges();
 
-                return author;
+                    Author author = new Author
+                    {
+                        ID = person.PersonID,
+                        Bio = bio
+                    };
+                    db.Authors.Add(author);
+                    db.SaveChanges();
+
+                    return author;
+                }
+
+                else
+                {
+                    MessageBox.Show("An author with that name already exists.");
+                    return null;
+                }
             }
         }
 
