@@ -189,5 +189,18 @@ namespace LibraryInfoWpfApp
             }
         }
 
+        public static void RemoveBookCopies(Book book, int number)
+        {
+            if (book.NumberOfCopies < number)
+                throw new ArgumentException("Number of copies cannot be less than zero.");
+            if (API.GetNumberAvailableBookCopies(book) < number)
+                throw new ArgumentException("Cannot remove books that are currently checked out.");
+            using (var db = new LibraryInfoEntities())
+            {
+                book.NumberOfCopies -= number;
+                db.SaveChanges();
+            }
+        }
+
     }
 }

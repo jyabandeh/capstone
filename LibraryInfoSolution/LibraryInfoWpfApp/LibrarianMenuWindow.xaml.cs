@@ -130,7 +130,16 @@ namespace LibraryInfoWpfApp
 
         private void RemoveCopiesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
+                throw new ArgumentNullException("A book was not selected");
+            int remove;
+            int.TryParse(AddRemoveCopiesTextBox.Text, out remove);
+            string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
+            var book = API.GetBook(isbn);
+            API.RemoveBookCopies(book, remove);
+            book = API.GetBook(isbn);
+            this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+            this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
         }
     }
 }
