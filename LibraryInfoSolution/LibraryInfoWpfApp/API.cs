@@ -180,5 +180,14 @@ namespace LibraryInfoWpfApp
             }
         }
 
+        public static void AddBookCopies(Book book, int number)
+        {
+            using (var db = new LibraryInfoEntities())
+            {
+                book.NumberOfCopies += number;
+                db.SaveChanges();
+            }
+        }
+
     }
 }

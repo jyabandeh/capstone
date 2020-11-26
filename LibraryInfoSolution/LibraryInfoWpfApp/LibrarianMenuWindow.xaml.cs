@@ -113,5 +113,24 @@ namespace LibraryInfoWpfApp
             this.DescriptionTextBox.Text = null;
             this.NumberAvailableTextBox.Text = null;
         }
+
+        private void AddCopiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
+                throw new ArgumentNullException("A book was not selected");
+            int add;
+            int.TryParse(AddRemoveCopiesTextBox.Text, out add);
+            string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
+            var book = API.GetBook(isbn);
+            API.AddBookCopies(book, add);
+            book = API.GetBook(isbn);
+            this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+            this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+        }
+
+        private void RemoveCopiesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
