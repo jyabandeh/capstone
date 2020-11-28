@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryInfoWpfApp"
-        mc:Ignorable="d" Height="473.985" Width="396.1" Loaded="Window_Loaded" Title="Add Book Menu" Activated="Window_Activated">
+        mc:Ignorable="d" Height="473.985" Width="396.1" Loaded="Window_Loaded" Title="Add a New Book" Activated="Window_Activated">
     <Grid>
         <ComboBox x:Name="AuthorComboBox" HorizontalAlignment="Left" Margin="133,103,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button x:Name="AddNewBookButton" Content="Add Book" HorizontalAlignment="Left" Margin="230,394,0,0" VerticalAlignment="Top" Width="96" Click="AddNewBookButton_Click"/>
+        <Button x:Name="AddNewBookButton" Content="Add Book" HorizontalAlignment="Left" Margin="142,394,0,0" VerticalAlignment="Top" Width="96" Click="AddNewBookButton_Click"/>
         <Label Content="Author:" HorizontalAlignment="Left" Margin="76,103,0,0" VerticalAlignment="Top"/>
         <Label Content="ISBN:" HorizontalAlignment="Left" Margin="90,46,0,0" VerticalAlignment="Top"/>
         <Label Content="Title:" HorizontalAlignment="Left" Margin="93,72,0,0" VerticalAlignment="Top"/>
@@ -28,6 +28,9 @@
         <TextBox x:Name="NumCopiesTextBox" HorizontalAlignment="Left" Height="23" Margin="133,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
         <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="88" Margin="133,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
         <Button x:Name="CreateAuthorButton" Content="..." HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="28" Height="22" Click="CreateAuthorButton_Click"/>
+        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="251,394,0,0" VerticalAlignment="Top" Width="96"/>
+        <Button x:Name="UpdateBookButton" Content="Update Book" HorizontalAlignment="Left" Margin="31,394,0,0" VerticalAlignment="Top" Width="96" Click="UpdateBookButton_Click"/>
+        <Label x:Name="BookIdLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
 
     </Grid>
 </Window>

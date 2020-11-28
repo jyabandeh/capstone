@@ -38,6 +38,29 @@ namespace LibraryInfoWpfApp
             }
         }
 
+        public static Book UpdateBook(Book book, string isbn, string title, Author author, int numPages, string subject, string description, string publisher, string yearPublished, string language, int numCopies)
+        {
+            if (author == null)
+                throw new ArgumentNullException(nameof(author));
+
+            using (var db = new LibraryInfoEntities())
+            {
+                book.AuthorID = author.ID;
+                book.Description = description;
+                book.ISBN = isbn;
+                book.Language = language;
+                book.NumberOfCopies = numCopies;
+                book.NumberPages = numPages;
+                book.Publisher = publisher;
+                book.Subject = subject;
+                book.Title = title;
+                book.YearPublished = yearPublished;
+
+                db.SaveChanges();
+                return book;
+            }
+        }
+
         public static Author CreateAuthor(string firstname, string lastname, string bio)
         {
             using (var db = new LibraryInfoEntities())
@@ -96,6 +119,16 @@ namespace LibraryInfoWpfApp
                 return db.Books.Include("Author.Person")
                                 .Where(b => b.ISBN == isbn)
                                 .SingleOrDefault();
+            }
+        }
+
+        public static Book GetBookByID(int id)
+        {
+            using (var db = new LibraryInfoEntities())
+            {
+                return db.Books.Include("Author.Person")
+                               .Where(b => b.BookID == id)
+                               .SingleOrDefault();
             }
         }
 

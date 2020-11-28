@@ -13,7 +13,7 @@
                 <Button x:Name="SearchLibrarianButton" Content="Search" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="75" Click="SearchLibrarianButton_Click"/>
                 <Button x:Name="ClearLibrarianButton" Content="Clear" HorizontalAlignment="Left" Margin="230,48,0,0" VerticalAlignment="Top" Width="75" Click="ClearLibrarianButton_Click"/>
                 <ListBox x:Name="SearchResultsLibrarianListBox" HorizontalAlignment="Left" Height="278" Margin="10,90,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="SearchResultsLibrarianListBox_SelectionChanged"/>
-                <Button x:Name="UpdateBookButton" Content="Update Selected Book" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="134"/>
+                <Button x:Name="UpdateBookButton" Content="Update Selected Book" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="134" Click="UpdateBookButton_Click"/>
                 <Button x:Name="CreateBookButton" Content="Add New Book" HorizontalAlignment="Left" Margin="171,389,0,0" VerticalAlignment="Top" Width="134" Click="CreateBookButton_Click"/>
             </Grid>
         </GroupBox>

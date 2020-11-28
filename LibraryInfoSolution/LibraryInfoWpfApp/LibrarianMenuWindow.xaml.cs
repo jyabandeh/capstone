@@ -48,6 +48,7 @@ namespace LibraryInfoWpfApp
         private void CreateBookButton_Click(object sender, RoutedEventArgs e)
         {
             CreateUpdateBookWindow createUpdateBookWindow = new CreateUpdateBookWindow();
+            createUpdateBookWindow.UpdateBookButton.Visibility = Visibility.Collapsed;
             createUpdateBookWindow.Show();
         }
 
@@ -140,6 +141,29 @@ namespace LibraryInfoWpfApp
             book = API.GetBook(isbn);
             this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
             this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+        }
+
+        private void UpdateBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
+                throw new ArgumentNullException("A book was not selected");
+            CreateUpdateBookWindow createUpdateBookWindow = new CreateUpdateBookWindow();
+            createUpdateBookWindow.AddNewBookButton.Visibility = Visibility.Collapsed;
+            createUpdateBookWindow.Title = "Update the Selected Book";
+            var book = API.GetBook(this.SearchResultsLibrarianListBox.SelectedValue.ToString());
+            createUpdateBookWindow.IsbnTextBox.Text = book.ISBN;
+            createUpdateBookWindow.TitleTextBox.Text = book.Title;
+            createUpdateBookWindow.NumPagesTextBox.Text = book.NumberPages.ToString();
+            createUpdateBookWindow.SubjectTextBox.Text = book.Subject;
+            createUpdateBookWindow.PublisherTextBox.Text = book.Publisher;
+            createUpdateBookWindow.YearPublishedTextBox.Text = book.YearPublished;
+            createUpdateBookWindow.LanguageTextBox.Text = book.Language;
+            createUpdateBookWindow.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+            createUpdateBookWindow.DescriptionTextBox.Text = book.Description;
+            createUpdateBookWindow.DisplayAuthorsList();
+            createUpdateBookWindow.AuthorComboBox.SelectedValue = book.AuthorID;
+            createUpdateBookWindow.BookIdLabel.Content = book.BookID;
+            createUpdateBookWindow.Show();
         }
     }
 }

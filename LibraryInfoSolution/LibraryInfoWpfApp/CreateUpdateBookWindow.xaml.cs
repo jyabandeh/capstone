@@ -19,7 +19,7 @@ namespace LibraryInfoWpfApp
     /// Interaction logic for CreateUpdateBookWindow.xaml
     /// </summary>
     public partial class CreateUpdateBookWindow : Window
-    {
+    {        
         public CreateUpdateBookWindow()
         {
             InitializeComponent();
@@ -27,7 +27,9 @@ namespace LibraryInfoWpfApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DisplayAuthorsList();
+            //Will only run this code if user is adding a new book rather than updating a selected book
+            if(this.AddNewBookButton.IsVisible)
+                DisplayAuthorsList();
         }
 
         private void AddNewBookButton_Click(object sender, RoutedEventArgs e)
@@ -54,7 +56,7 @@ namespace LibraryInfoWpfApp
             
         }
 
-        private void DisplayAuthorsList()
+        public void DisplayAuthorsList()
         {
             var authors = API.GetAuthors();
             this.AuthorComboBox.ItemsSource = authors.Select(a => new { a.ID, Name = $"{a.Person.Firstname} {a.Person.Lastname}" }).ToList();
@@ -65,6 +67,24 @@ namespace LibraryInfoWpfApp
         private void Window_Activated(object sender, EventArgs e)
         {
             DisplayAuthorsList();
+        }
+
+        private void UpdateBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            var book = API.GetBookByID(int.Parse(BookIdLabel.Content.ToString()));
+            string isbn = IsbnTextBox.Text;
+            string title = TitleTextBox.Text;
+            int numberPages;
+            int.TryParse(NumPagesTextBox.Text, out numberPages);
+            string subject = SubjectTextBox.Text;
+            string publisher = PublisherTextBox.Text;
+            string yearPublished = YearPublishedTextBox.Text;
+            string language = LanguageTextBox.Text;
+            int numberCopies;
+            int.TryParse(NumCopiesTextBox.Text, out numberCopies);
+            string description = DescriptionTextBox.Text;
+            Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
+            book = API.UpdateBook(book, isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
         }
     }
 }
