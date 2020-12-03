@@ -222,7 +222,8 @@ namespace LibraryInfoWpfApp
         {
             using (var db = new LibraryInfoEntities())
             {
-                book.NumberOfCopies += number;
+                var bookContext = db.Books.FirstOrDefault(b => b.ISBN == book.ISBN);
+                bookContext.NumberOfCopies += number;
                 db.SaveChanges();
             }
         }
@@ -235,7 +236,8 @@ namespace LibraryInfoWpfApp
                 throw new ArgumentException("Cannot remove books that are currently checked out.");
             using (var db = new LibraryInfoEntities())
             {
-                book.NumberOfCopies -= number;
+                var bookContext = db.Books.FirstOrDefault(b => b.ISBN == book.ISBN);
+                bookContext.NumberOfCopies -= number;
                 db.SaveChanges();
             }
         }

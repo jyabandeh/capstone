@@ -118,7 +118,7 @@ namespace LibraryInfoWpfApp
         private void AddCopiesButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.SearchResultsLibrarianListBox.SelectedValue == null)
-                throw new ArgumentNullException("A book was not selected");
+                throw new ArgumentException("A book was not selected");
             int add;
             int.TryParse(AddRemoveCopiesTextBox.Text, out add);
             string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
@@ -132,7 +132,7 @@ namespace LibraryInfoWpfApp
         private void RemoveCopiesButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.SearchResultsLibrarianListBox.SelectedValue == null)
-                throw new ArgumentNullException("A book was not selected");
+                throw new ArgumentException("A book was not selected");
             int remove;
             int.TryParse(AddRemoveCopiesTextBox.Text, out remove);
             string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();

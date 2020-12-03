@@ -27,10 +27,11 @@ namespace LibraryInfoWpfApp
         private void CreateAuthorButton_Click(object sender, RoutedEventArgs e)
         {
             string firstname = this.FirstNameTextBox.Text;
-            string lastname = this.FirstNameTextBox.Text;
+            string lastname = this.LastNameTextBox.Text;
             string bio = this.BioTextBox.Text;
-            API.CreateAuthor(firstname, lastname, bio);
-            MessageBox.Show($"{firstname} {lastname} has been added as an author.");
+            var author = API.CreateAuthor(firstname, lastname, bio);
+            if (author != null)
+                MessageBox.Show($"{firstname} {lastname} has been added as an author.");
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

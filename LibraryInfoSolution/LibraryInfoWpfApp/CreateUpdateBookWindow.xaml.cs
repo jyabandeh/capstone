@@ -86,5 +86,10 @@ namespace LibraryInfoWpfApp
             Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
             book = API.UpdateBook(book, isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

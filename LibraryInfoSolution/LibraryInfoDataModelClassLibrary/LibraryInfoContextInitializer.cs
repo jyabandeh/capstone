@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace LibraryInfoDataModelClassLibrary
 {
-    public class LibraryInfoContextInitializer : DropCreateDatabaseAlways<LibraryInfoEntities>
+    public class LibraryInfoContextInitializer : DropCreateDatabaseIfModelChanges<LibraryInfoEntities>
     {
         protected override void Seed(LibraryInfoEntities context)
         {

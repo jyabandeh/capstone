@@ -28,7 +28,7 @@
         <TextBox x:Name="NumCopiesTextBox" HorizontalAlignment="Left" Height="23" Margin="133,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
         <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="88" Margin="133,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
         <Button x:Name="CreateAuthorButton" Content="..." HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="28" Height="22" Click="CreateAuthorButton_Click"/>
-        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="251,394,0,0" VerticalAlignment="Top" Width="96"/>
+        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="251,394,0,0" VerticalAlignment="Top" Width="96" Click="CloseButton_Click"/>
         <Button x:Name="UpdateBookButton" Content="Update Book" HorizontalAlignment="Left" Margin="31,394,0,0" VerticalAlignment="Top" Width="96" Click="UpdateBookButton_Click"/>
         <Label x:Name="BookIdLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
 
