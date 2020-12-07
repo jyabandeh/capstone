@@ -49,5 +49,10 @@ namespace LibraryInfoDataModelClassLibrary
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CheckOutLog> CheckOutLogs { get; set; }
+
+        public override string ToString()
+        {
+            return $"Book ID: {BookID}\n{ISBN}\n{Title}";
+        }
     }
 }

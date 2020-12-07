@@ -20,5 +20,10 @@ namespace LibraryInfoDataModelClassLibrary
         public virtual Book Book { get; set; }
 
         public virtual Cardholder Cardholder { get; set; }
+
+        public override string ToString()
+        {
+            return CheckOutDate.ToString();
+        }
     }
 }

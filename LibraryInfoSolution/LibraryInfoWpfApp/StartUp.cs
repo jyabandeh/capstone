@@ -16,7 +16,7 @@ namespace LibraryInfoWpfApp
             }
             catch(Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("An error occurred: " + ex.GetBaseException().Message);                
             }
         }
     }

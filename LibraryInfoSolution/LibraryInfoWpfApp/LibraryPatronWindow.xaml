@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryInfoWpfApp"
         mc:Ignorable="d"
-        Title="Library Patron Book Search" Height="632.056" Width="680.076">
+        Title="Library Patron Book Search" Height="558.056" Width="680.076">
     <Grid>
-        <GroupBox Header="Search by Title, Author, Subject, or ISBN" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="328">
-            <Grid HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="328" Margin="0,0,-12,-13">
+        <GroupBox Header="Search by Title, Author, Subject, or ISBN" HorizontalAlignment="Left" Height="443" Margin="10,10,0,0" VerticalAlignment="Top" Width="328">
+            <Grid HorizontalAlignment="Left" Height="433" VerticalAlignment="Top" Width="328" Margin="0,0,-12,-13">
                 <TextBox x:Name="SearchPatronTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295"/>
                 <Button x:Name="SearchPatronButton" Content="Search" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="75" Click="SearchPatronButton_Click"/>
                 <Button x:Name="ClearPatronButton" Content="Clear" HorizontalAlignment="Left" Margin="230,48,0,0" VerticalAlignment="Top" Width="75" Click="ClearPatronButton_Click"/>
-                <ListBox x:Name="SearchResultsPatronListBox" HorizontalAlignment="Left" Height="278" Margin="10,90,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="SearchResultsPatronListBox_SelectionChanged"/>
+                <ListBox x:Name="SearchResultsPatronListBox" HorizontalAlignment="Left" Height="323" Margin="10,90,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="SearchResultsPatronListBox_SelectionChanged"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Selected Book Details" HorizontalAlignment="Left" Height="443" Margin="343,10,0,0" VerticalAlignment="Top" Width="307">
@@ -41,7 +41,7 @@
                 <TextBox x:Name="NumberAvailableTextBox" HorizontalAlignment="Left" Height="23" Margin="116,359,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="ClosePatronButton" Content="Close" HorizontalAlignment="Left" Margin="575,490,0,0" VerticalAlignment="Top" Width="75" Click="ClosePatronButton_Click"/>
+        <Button x:Name="ClosePatronButton" Content="Close" HorizontalAlignment="Left" Margin="575,476,0,0" VerticalAlignment="Top" Width="75" Click="ClosePatronButton_Click"/>
 
     </Grid>
 </Window>

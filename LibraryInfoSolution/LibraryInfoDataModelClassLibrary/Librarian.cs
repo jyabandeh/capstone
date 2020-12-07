@@ -24,5 +24,10 @@ namespace LibraryInfoDataModelClassLibrary
         public string Password { get; set; }
 
         public virtual Person Person { get; set; }
+
+        public override string ToString()
+        {
+            return Person.ToString() + $"\n{Phone}";
+        }
     }
 }

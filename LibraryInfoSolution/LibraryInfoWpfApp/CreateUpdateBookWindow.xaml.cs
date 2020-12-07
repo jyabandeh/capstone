@@ -34,19 +34,24 @@ namespace LibraryInfoWpfApp
 
         private void AddNewBookButton_Click(object sender, RoutedEventArgs e)
         {
-            string isbn = IsbnTextBox.Text;
-            string title = TitleTextBox.Text;
-            int numberPages;
-            int.TryParse(NumPagesTextBox.Text, out numberPages);
-            string subject = SubjectTextBox.Text;
-            string publisher = PublisherTextBox.Text;
-            string yearPublished = YearPublishedTextBox.Text;
-            string language = LanguageTextBox.Text;
-            int numberCopies;
-            int.TryParse(NumCopiesTextBox.Text, out numberCopies);
-            string description = DescriptionTextBox.Text;
-            Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
-            var book = API.CreateBook(isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
+            if (AreFieldsValid())
+            {
+                string isbn = IsbnTextBox.Text.Trim();
+                string title = TitleTextBox.Text.Trim();
+                int numberPages;
+                int.TryParse(NumPagesTextBox.Text.Trim(), out numberPages);
+                string subject = SubjectTextBox.Text.Trim();
+                string publisher = PublisherTextBox.Text.Trim();
+                string yearPublished = YearPublishedTextBox.Text.Trim();
+                string language = LanguageTextBox.Text.Trim();
+                int numberCopies;
+                int.TryParse(NumCopiesTextBox.Text.Trim(), out numberCopies);
+                string description = DescriptionTextBox.Text.Trim();
+                Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
+                var book = API.CreateBook(isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
+                if (book != null)
+                    MessageBox.Show($"Added '{book.Title}' with Book ID {book.BookID}");
+            }
         }
 
         private void CreateAuthorButton_Click(object sender, RoutedEventArgs e)
@@ -71,25 +76,77 @@ namespace LibraryInfoWpfApp
 
         private void UpdateBookButton_Click(object sender, RoutedEventArgs e)
         {
-            var book = API.GetBookByID(int.Parse(BookIdLabel.Content.ToString()));
-            string isbn = IsbnTextBox.Text;
-            string title = TitleTextBox.Text;
-            int numberPages;
-            int.TryParse(NumPagesTextBox.Text, out numberPages);
-            string subject = SubjectTextBox.Text;
-            string publisher = PublisherTextBox.Text;
-            string yearPublished = YearPublishedTextBox.Text;
-            string language = LanguageTextBox.Text;
-            int numberCopies;
-            int.TryParse(NumCopiesTextBox.Text, out numberCopies);
-            string description = DescriptionTextBox.Text;
-            Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
-            book = API.UpdateBook(book, isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
+            if (AreFieldsValid())
+            {
+                var book = API.GetBookByID(int.Parse(BookIdLabel.Content.ToString()));
+                string isbn = IsbnTextBox.Text.Trim();
+                string title = TitleTextBox.Text.Trim();
+                int numberPages;
+                int.TryParse(NumPagesTextBox.Text.Trim(), out numberPages);
+                string subject = SubjectTextBox.Text.Trim();
+                string publisher = PublisherTextBox.Text.Trim();
+                string yearPublished = YearPublishedTextBox.Text.Trim();
+                string language = LanguageTextBox.Text.Trim();
+                int numberCopies;
+                int.TryParse(NumCopiesTextBox.Text.Trim(), out numberCopies);
+                string description = DescriptionTextBox.Text.Trim();
+                Author author = API.GetAuthor(int.Parse(AuthorComboBox.SelectedValue.ToString()));
+                book = API.UpdateBook(book, isbn, title, author, numberPages, subject, description, publisher, yearPublished, language, numberCopies);
+                if (book != null)
+                    MessageBox.Show($"Book ID {book.BookID} has been updated.");
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private bool AreFieldsValid()
+        {
+            string isbn = IsbnTextBox.Text.Trim();
+            string title = TitleTextBox.Text.Trim();            
+            string pages = NumPagesTextBox.Text.Trim();
+            string copies = NumCopiesTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(isbn) ||
+                string.IsNullOrEmpty(title) ||
+                string.IsNullOrEmpty(copies) ||
+                AuthorComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Please fill out all required (*) fields.");
+                return false;
+            }
+
+            int copiesInt;
+            if (!int.TryParse(copies, out copiesInt))   
+            {
+                MessageBox.Show("Number of copies must be an integer.");
+                return false;
+            }
+            if(copiesInt < 0)
+            {
+                MessageBox.Show("Number of copies must be positive.");
+                return false;
+            }
+
+            int pagesInt;
+            if (!string.IsNullOrEmpty(pages))
+            {
+                if(!int.TryParse(pages, out pagesInt))
+                {
+                    MessageBox.Show("Number of pages must be an integer.");
+                    return false;
+                }
+                if(pagesInt < 0)
+                {
+                    MessageBox.Show("Number of pages must be positive.");
+                    return false;
+                }
+            }
+
+            return true;
+
         }
     }
 }

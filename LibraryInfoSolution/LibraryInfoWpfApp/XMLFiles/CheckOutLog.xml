@@ -17,6 +17,6 @@
     <CheckOutLogID>3</CheckOutLogID>
     <CardholderID>16</CardholderID>
     <BookID>5</BookID>
-    <CheckOutDate>2020-11-06T00:00:00</CheckOutDate>
+    <CheckOutDate>2020-11-01T00:00:00</CheckOutDate>
   </CheckOutLog>
 </CheckOutLogs>

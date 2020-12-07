@@ -40,7 +40,17 @@ namespace LibraryInfoWpfApp
                     if (!API.IsAccountOverdue(cardholder))
                     {
                         API.CheckOutBook(book, cardholder);
+                        if (IsbnTextBox.Text == isbnCheckOutTextBox.Text)
+                            NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
                     }
+                    else
+                    {
+                        MessageBox.Show($"{cardholder.LibraryCardID} account is overdue.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"No copies available of '{book.Title}'.");
                 }
             }
         }
@@ -59,11 +69,14 @@ namespace LibraryInfoWpfApp
             if (book != null)
             {
                 API.CheckInBook(book, cardholder);
+                if (IsbnTextBox.Text == isbnCheckOutTextBox.Text)
+                    NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
             }
         }
 
         private void SearchLibrarianButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearDetails();
             string searchText = this.SearchLibrarianTextBox.Text.Trim();
             var books = API.FindBooks(searchText);
             this.SearchResultsLibrarianListBox.ItemsSource = books.Select(b => new { b.ISBN, Title = b.ISBN + " | " + b.Title }).ToList();
@@ -75,33 +88,130 @@ namespace LibraryInfoWpfApp
         {
             if (this.SearchResultsLibrarianListBox.ItemsSource != null)
             {
-                string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
-                var book = API.GetBook(isbn);
-                if (book != null)
+                if (this.SearchResultsLibrarianListBox.SelectedIndex != -1)
                 {
-                    this.IsbnTextBox.Text = book.ISBN;
-                    this.TitleTextBox.Text = book.Title;
-                    this.AuthorTextBox.Text = $"{book.Author.Person.Firstname} {book.Author.Person.Lastname}";
-                    this.NumPagesTextBox.Text = book.NumberPages.ToString();
-                    this.SubjectTextBox.Text = book.Subject;
-                    this.PublisherTextBox.Text = book.Publisher;
-                    this.YearPublishedTextBox.Text = book.YearPublished;
-                    this.LanguageTextBox.Text = book.Language;
-                    this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
-                    this.DescriptionTextBox.Text = book.Description;
-                    this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Book not found.");
+                    string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
+                    var book = API.GetBook(isbn);
+                    if (book != null)
+                    {
+                        this.IsbnTextBox.Text = book.ISBN;
+                        this.TitleTextBox.Text = book.Title;
+                        this.AuthorTextBox.Text = $"{book.Author.Person.Firstname} {book.Author.Person.Lastname}";
+                        this.NumPagesTextBox.Text = book.NumberPages.ToString();
+                        this.SubjectTextBox.Text = book.Subject;
+                        this.PublisherTextBox.Text = book.Publisher;
+                        this.YearPublishedTextBox.Text = book.YearPublished;
+                        this.LanguageTextBox.Text = book.Language;
+                        this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+                        this.DescriptionTextBox.Text = book.Description;
+                        this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Book not found.");
+                    }
                 }
             }
         }
 
         private void ClearLibrarianButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearSearch();
+            ClearDetails();
+        }
+
+        private void AddCopiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SearchResultsLibrarianListBox.SelectedValue != null)
+            {
+                int add;
+                if (int.TryParse(AddRemoveCopiesTextBox.Text, out add))
+                {
+                    string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
+                    var book = API.GetBook(isbn);
+                    API.AddBookCopies(book, add);
+                    book = API.GetBook(isbn);
+                    this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+                    this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a positive integer.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a book.");
+            }
+        }
+
+        private void RemoveCopiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SearchResultsLibrarianListBox.SelectedValue != null)
+            {
+                int remove;
+                if (int.TryParse(AddRemoveCopiesTextBox.Text, out remove))
+                {
+                    string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
+                    var book = API.GetBook(isbn);
+                    API.RemoveBookCopies(book, remove);
+                    book = API.GetBook(isbn);
+                    this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+                    this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a positive integer.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a book.");
+            }
+        }
+
+        private void UpdateBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a book");
+            }
+            else
+            {
+                CreateUpdateBookWindow createUpdateBookWindow = new CreateUpdateBookWindow();
+                createUpdateBookWindow.AddNewBookButton.Visibility = Visibility.Collapsed;
+                createUpdateBookWindow.Title = "Update the Selected Book";
+                var book = API.GetBook(this.SearchResultsLibrarianListBox.SelectedValue.ToString());
+                createUpdateBookWindow.IsbnTextBox.Text = book.ISBN;
+                createUpdateBookWindow.TitleTextBox.Text = book.Title;
+                createUpdateBookWindow.NumPagesTextBox.Text = book.NumberPages.ToString();
+                createUpdateBookWindow.SubjectTextBox.Text = book.Subject;
+                createUpdateBookWindow.PublisherTextBox.Text = book.Publisher;
+                createUpdateBookWindow.YearPublishedTextBox.Text = book.YearPublished;
+                createUpdateBookWindow.LanguageTextBox.Text = book.Language;
+                createUpdateBookWindow.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+                createUpdateBookWindow.DescriptionTextBox.Text = book.Description;
+                createUpdateBookWindow.DisplayAuthorsList();
+                createUpdateBookWindow.AuthorComboBox.SelectedValue = book.AuthorID;
+                createUpdateBookWindow.BookIdLabel.Content = book.BookID;                
+                createUpdateBookWindow.Show();
+            }
+        }
+
+        private void DisplayListsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var listsWindow = new ListsWindow();
+            listsWindow.Show();
+        }
+
+        private void ClearSearch()
+        {
             this.SearchLibrarianTextBox.Text = null;
             this.SearchResultsLibrarianListBox.ItemsSource = null;
+        }
+
+        private void ClearDetails()
+        {
             this.IsbnTextBox.Text = null;
             this.TitleTextBox.Text = null;
             this.AuthorTextBox.Text = null;
@@ -113,57 +223,6 @@ namespace LibraryInfoWpfApp
             this.NumCopiesTextBox.Text = null;
             this.DescriptionTextBox.Text = null;
             this.NumberAvailableTextBox.Text = null;
-        }
-
-        private void AddCopiesButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
-                throw new ArgumentException("A book was not selected");
-            int add;
-            int.TryParse(AddRemoveCopiesTextBox.Text, out add);
-            string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
-            var book = API.GetBook(isbn);
-            API.AddBookCopies(book, add);
-            book = API.GetBook(isbn);
-            this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
-            this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
-        }
-
-        private void RemoveCopiesButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
-                throw new ArgumentException("A book was not selected");
-            int remove;
-            int.TryParse(AddRemoveCopiesTextBox.Text, out remove);
-            string isbn = this.SearchResultsLibrarianListBox.SelectedValue.ToString();
-            var book = API.GetBook(isbn);
-            API.RemoveBookCopies(book, remove);
-            book = API.GetBook(isbn);
-            this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
-            this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
-        }
-
-        private void UpdateBookButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.SearchResultsLibrarianListBox.SelectedValue == null)
-                throw new ArgumentNullException("A book was not selected");
-            CreateUpdateBookWindow createUpdateBookWindow = new CreateUpdateBookWindow();
-            createUpdateBookWindow.AddNewBookButton.Visibility = Visibility.Collapsed;
-            createUpdateBookWindow.Title = "Update the Selected Book";
-            var book = API.GetBook(this.SearchResultsLibrarianListBox.SelectedValue.ToString());
-            createUpdateBookWindow.IsbnTextBox.Text = book.ISBN;
-            createUpdateBookWindow.TitleTextBox.Text = book.Title;
-            createUpdateBookWindow.NumPagesTextBox.Text = book.NumberPages.ToString();
-            createUpdateBookWindow.SubjectTextBox.Text = book.Subject;
-            createUpdateBookWindow.PublisherTextBox.Text = book.Publisher;
-            createUpdateBookWindow.YearPublishedTextBox.Text = book.YearPublished;
-            createUpdateBookWindow.LanguageTextBox.Text = book.Language;
-            createUpdateBookWindow.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
-            createUpdateBookWindow.DescriptionTextBox.Text = book.Description;
-            createUpdateBookWindow.DisplayAuthorsList();
-            createUpdateBookWindow.AuthorComboBox.SelectedValue = book.AuthorID;
-            createUpdateBookWindow.BookIdLabel.Content = book.BookID;
-            createUpdateBookWindow.Show();
         }
     }
 }

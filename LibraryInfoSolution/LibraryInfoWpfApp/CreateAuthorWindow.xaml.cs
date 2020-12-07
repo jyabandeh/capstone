@@ -26,17 +26,33 @@ namespace LibraryInfoWpfApp
 
         private void CreateAuthorButton_Click(object sender, RoutedEventArgs e)
         {
-            string firstname = this.FirstNameTextBox.Text;
-            string lastname = this.LastNameTextBox.Text;
-            string bio = this.BioTextBox.Text;
-            var author = API.CreateAuthor(firstname, lastname, bio);
-            if (author != null)
-                MessageBox.Show($"{firstname} {lastname} has been added as an author.");
+            if (AreFieldsValid())
+            {
+                string firstname = this.FirstNameTextBox.Text.Trim();
+                string lastname = this.LastNameTextBox.Text.Trim();
+                string bio = this.BioTextBox.Text;
+                var author = API.CreateAuthor(firstname, lastname, bio);
+                if (author != null)
+                    MessageBox.Show($"{firstname} {lastname} has been added as an author.");
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();            
+        }
+
+        private bool AreFieldsValid()
+        {
+            string firstname = FirstNameTextBox.Text.Trim();
+            string lastname = LastNameTextBox.Text.Trim();
+
+            if(string.IsNullOrEmpty(firstname) || string.IsNullOrEmpty(lastname))
+            {
+                MessageBox.Show("Please fill out all required (*) fields.");
+                return false;
+            }
+            return true;
         }
     }
 }

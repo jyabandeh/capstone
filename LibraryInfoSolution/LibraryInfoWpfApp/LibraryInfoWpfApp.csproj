@@ -69,12 +69,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="API.cs" />
+    <Compile Include="AuthorList.cs" />
+    <Compile Include="BookList.cs" />
+    <Compile Include="CardholderList.cs" />
+    <Compile Include="CheckoutLogList.cs" />
     <Compile Include="CreateAuthorWindow.xaml.cs">
       <DependentUpon>CreateAuthorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateUpdateBookWindow.xaml.cs">
       <DependentUpon>CreateUpdateBookWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LibrarianList.cs" />
     <Compile Include="LibrarianLoginWindow.xaml.cs">
       <DependentUpon>LibrarianLoginWindow.xaml</DependentUpon>
     </Compile>
@@ -84,6 +89,10 @@
     <Compile Include="LibraryPatronWindow.xaml.cs">
       <DependentUpon>LibraryPatronWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListsWindow.xaml.cs">
+      <DependentUpon>ListsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PeopleList.cs" />
     <Compile Include="StartUp.cs" />
     <Page Include="CreateAuthorWindow.xaml">
       <SubType>Designer</SubType>
@@ -102,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LibraryPatronWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

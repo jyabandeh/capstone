@@ -8,15 +8,15 @@
     <Grid>
         <ComboBox x:Name="AuthorComboBox" HorizontalAlignment="Left" Margin="133,103,0,0" VerticalAlignment="Top" Width="160"/>
         <Button x:Name="AddNewBookButton" Content="Add Book" HorizontalAlignment="Left" Margin="142,394,0,0" VerticalAlignment="Top" Width="96" Click="AddNewBookButton_Click"/>
-        <Label Content="Author:" HorizontalAlignment="Left" Margin="76,103,0,0" VerticalAlignment="Top"/>
-        <Label Content="ISBN:" HorizontalAlignment="Left" Margin="90,46,0,0" VerticalAlignment="Top"/>
-        <Label Content="Title:" HorizontalAlignment="Left" Margin="93,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="*Author:" HorizontalAlignment="Left" Margin="73,103,0,0" VerticalAlignment="Top"/>
+        <Label Content="*ISBN:" HorizontalAlignment="Left" Margin="84,46,0,0" VerticalAlignment="Top"/>
+        <Label Content="*Title:" HorizontalAlignment="Left" Margin="90,72,0,0" VerticalAlignment="Top"/>
         <Label Content="Number of Pages:" HorizontalAlignment="Left" Margin="24,129,0,0" VerticalAlignment="Top"/>
         <Label Content="Subject:" HorizontalAlignment="Left" Margin="76,155,0,0" VerticalAlignment="Top"/>
         <Label Content="Publisher:" HorizontalAlignment="Left" Margin="67,181,0,0" VerticalAlignment="Top"/>
         <Label Content="Year Published:" HorizontalAlignment="Left" Margin="38,207,0,0" VerticalAlignment="Top"/>
         <Label Content="Language:" HorizontalAlignment="Left" Margin="64,233,0,0" VerticalAlignment="Top"/>
-        <Label Content="Number of Copies:" HorizontalAlignment="Left" Margin="19,259,0,0" VerticalAlignment="Top"/>
+        <Label Content="*Number of Copies:" HorizontalAlignment="Left" Margin="14,259,0,0" VerticalAlignment="Top"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="55,285,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="IsbnTextBox" HorizontalAlignment="Left" Height="23" Margin="133,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
         <TextBox x:Name="TitleTextBox" HorizontalAlignment="Left" Height="23" Margin="133,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
@@ -30,7 +30,7 @@
         <Button x:Name="CreateAuthorButton" Content="..." HorizontalAlignment="Left" Margin="298,103,0,0" VerticalAlignment="Top" Width="28" Height="22" Click="CreateAuthorButton_Click"/>
         <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="251,394,0,0" VerticalAlignment="Top" Width="96" Click="CloseButton_Click"/>
         <Button x:Name="UpdateBookButton" Content="Update Book" HorizontalAlignment="Left" Margin="31,394,0,0" VerticalAlignment="Top" Width="96" Click="UpdateBookButton_Click"/>
-        <Label x:Name="BookIdLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+        <Label x:Name="BookIdLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Visibility="Hidden"/>
 
     </Grid>
 </Window>

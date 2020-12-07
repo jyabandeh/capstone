@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryInfoWpfApp"
         mc:Ignorable="d"
-        Title="Librarian Menu" Height="548.223" Width="1174.62">
+        Title="Librarian Menu" Height="501.223" Width="908.62">
     <Grid>
-        <GroupBox Header="Search by Title, Author, Subject, or ISBN" HorizontalAlignment="Left" Height="439" Margin="10,10,0,0" VerticalAlignment="Top" Width="328">
-            <Grid HorizontalAlignment="Left" Height="429" VerticalAlignment="Top" Width="328" Margin="0,0,-12,-13">
+        <GroupBox Header="Search by Title, Author, Subject, or ISBN" HorizontalAlignment="Left" Height="337" Margin="10,10,0,0" VerticalAlignment="Top" Width="328">
+            <Grid HorizontalAlignment="Left" Height="318" VerticalAlignment="Top" Width="328" Margin="0,0,-12,-4">
                 <TextBox x:Name="SearchLibrarianTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295"/>
-                <Button x:Name="SearchLibrarianButton" Content="Search" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="75" Click="SearchLibrarianButton_Click"/>
-                <Button x:Name="ClearLibrarianButton" Content="Clear" HorizontalAlignment="Left" Margin="230,48,0,0" VerticalAlignment="Top" Width="75" Click="ClearLibrarianButton_Click"/>
-                <ListBox x:Name="SearchResultsLibrarianListBox" HorizontalAlignment="Left" Height="278" Margin="10,90,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="SearchResultsLibrarianListBox_SelectionChanged"/>
-                <Button x:Name="UpdateBookButton" Content="Update Selected Book" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="134" Click="UpdateBookButton_Click"/>
-                <Button x:Name="CreateBookButton" Content="Add New Book" HorizontalAlignment="Left" Margin="171,389,0,0" VerticalAlignment="Top" Width="134" Click="CreateBookButton_Click"/>
+                <Button x:Name="SearchLibrarianButton" Content="Search" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="75" Click="SearchLibrarianButton_Click"/>
+                <Button x:Name="ClearLibrarianButton" Content="Clear" HorizontalAlignment="Left" Margin="230,38,0,0" VerticalAlignment="Top" Width="75" Click="ClearLibrarianButton_Click"/>
+                <ListBox x:Name="SearchResultsLibrarianListBox" HorizontalAlignment="Left" Height="223" Margin="10,63,0,0" VerticalAlignment="Top" Width="295" SelectionChanged="SearchResultsLibrarianListBox_SelectionChanged"/>
+                <Button x:Name="UpdateBookButton" Content="Update Selected Book" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Width="134" Click="UpdateBookButton_Click"/>
+                <Button x:Name="CreateBookButton" Content="Add New Book" HorizontalAlignment="Left" Margin="171,291,0,0" VerticalAlignment="Top" Width="134" Click="CreateBookButton_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Selected Book Details" HorizontalAlignment="Left" Height="439" Margin="343,10,0,0" VerticalAlignment="Top" Width="307">
@@ -43,25 +43,26 @@
                 <TextBox x:Name="NumberAvailableTextBox" HorizontalAlignment="Left" Height="23" Margin="116,359,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsReadOnly="True"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Add/Remove Copies" HorizontalAlignment="Left" Height="113" Margin="655,10,0,0" VerticalAlignment="Top" Width="258">
-            <Grid HorizontalAlignment="Left" Height="103" Margin="0,0,-2,-13" VerticalAlignment="Top" Width="248">
-                <Label Content="Number of Copies:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="AddRemoveCopiesTextBox" HorizontalAlignment="Left" Height="23" Margin="114,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="AddCopiesButton" Content="Add" HorizontalAlignment="Left" Margin="41,65,0,0" VerticalAlignment="Top" Width="75" Click="AddCopiesButton_Click"/>
-                <Button x:Name="RemoveCopiesButton" Content="Remove" HorizontalAlignment="Left" Margin="134,65,0,0" VerticalAlignment="Top" Width="75" Click="RemoveCopiesButton_Click"/>
+        <GroupBox Header="Add/Remove Copies" HorizontalAlignment="Left" Height="97" Margin="10,352,0,0" VerticalAlignment="Top" Width="328">
+            <Grid HorizontalAlignment="Left" Height="77" Margin="0,0,-2,-3" VerticalAlignment="Top" Width="318">
+                <Label Content="Number of Copies:" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="AddRemoveCopiesTextBox" HorizontalAlignment="Left" Height="22" Margin="135,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55"/>
+                <Button x:Name="AddCopiesButton" Content="Add" HorizontalAlignment="Left" Margin="219,10,0,0" VerticalAlignment="Top" Width="75" Click="AddCopiesButton_Click"/>
+                <Button x:Name="RemoveCopiesButton" Content="Remove" HorizontalAlignment="Left" Margin="219,35,0,0" VerticalAlignment="Top" Width="75" Click="RemoveCopiesButton_Click"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="LogoutButton" Content="Logout" HorizontalAlignment="Left" Margin="923,487,0,0" VerticalAlignment="Top" Width="75" Click="LogoutButton_Click"/>
-        <GroupBox Header="Check-In/Check-Out" HorizontalAlignment="Left" Height="318" Margin="655,128,0,0" VerticalAlignment="Top" Width="258">
-            <Grid HorizontalAlignment="Left" Height="308" VerticalAlignment="Top" Width="248" Margin="0,0,-2,-13">
+        <Button x:Name="LogoutButton" Content="Logout" HorizontalAlignment="Left" Margin="754,364,0,0" VerticalAlignment="Top" Width="118" Click="LogoutButton_Click" RenderTransformOrigin="0.227,0" Height="69"/>
+        <GroupBox Header="Check-In/Check-Out" HorizontalAlignment="Left" Height="217" Margin="655,10,0,0" VerticalAlignment="Top" Width="217">
+            <Grid HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="207" Margin="0,0,-2,-4">
                 <Label Content="Card Number" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
                 <Label Content="Enter ISBN" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="CheckInButton" Content="Check-In" HorizontalAlignment="Left" Margin="19,264,0,0" VerticalAlignment="Top" Width="75" Click="CheckInButton_Click"/>
-                <Button x:Name="CheckOutButton" Content="Check-Out" HorizontalAlignment="Left" Margin="146,264,0,0" VerticalAlignment="Top" Width="75" Click="CheckOutButton_Click"/>
+                <Button x:Name="CheckInButton" Content="Check-In" HorizontalAlignment="Left" Margin="11,159,0,0" VerticalAlignment="Top" Width="75" Click="CheckInButton_Click"/>
+                <Button x:Name="CheckOutButton" Content="Check-Out" HorizontalAlignment="Left" Margin="112,159,0,0" VerticalAlignment="Top" Width="75" Click="CheckOutButton_Click"/>
                 <TextBox x:Name="CardNumberTextBox" HorizontalAlignment="Left" Height="23" Text="sonete77" Margin="19,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBox x:Name="isbnCheckOutTextBox" HorizontalAlignment="Left" Height="23" Text="0345535529" Margin="19,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             </Grid>
         </GroupBox>
+        <Button x:Name="DisplayListsButton" Content="Display Lists" HorizontalAlignment="Left" Margin="754,278,0,0" VerticalAlignment="Top" Width="118" Height="69" Click="DisplayListsButton_Click"/>
 
     </Grid>
 </Window>

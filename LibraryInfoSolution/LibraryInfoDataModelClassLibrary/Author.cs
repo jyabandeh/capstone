@@ -17,12 +17,17 @@ namespace LibraryInfoDataModelClassLibrary
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        [StringLength(240)]
+        [StringLength(250)]
         public string Bio { get; set; }
 
         public virtual Person Person { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }
+
+        public override string ToString()
+        {
+            return Person.ToString();
+        }
     }
 }

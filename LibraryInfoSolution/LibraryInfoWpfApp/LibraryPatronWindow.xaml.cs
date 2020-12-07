@@ -31,9 +31,11 @@ namespace LibraryInfoWpfApp
 
         private void SearchPatronButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearDetails();
             string searchText = this.SearchPatronTextBox.Text.Trim();
-            var books= API.FindBooks(searchText);
-            this.SearchResultsPatronListBox.ItemsSource = books.Select(b => new { b.ISBN, Title = b.ISBN + " | " + b.Title }).ToList();
+            var books = API.FindBooks(searchText).Where(b => b.NumberOfCopies !=0).ToList();
+            this.SearchResultsPatronListBox.ItemsSource = books.Select(b => new { b.ISBN, Title = b.ISBN + " | " + b.Title })
+                                                               .ToList();            
             this.SearchResultsPatronListBox.SelectedValuePath = "ISBN";
             this.SearchResultsPatronListBox.DisplayMemberPath = "Title";
         }
@@ -42,33 +44,46 @@ namespace LibraryInfoWpfApp
         {
             if (this.SearchResultsPatronListBox.ItemsSource != null)
             {
-                string isbn = this.SearchResultsPatronListBox.SelectedValue.ToString();
-                var book = API.GetBook(isbn);
-                if (book != null)
+                if (this.SearchResultsPatronListBox.SelectedIndex != -1)
                 {
-                    this.IsbnTextBox.Text = book.ISBN;
-                    this.TitleTextBox.Text = book.Title;
-                    this.AuthorTextBox.Text = $"{book.Author.Person.Firstname} {book.Author.Person.Lastname}";
-                    this.NumPagesTextBox.Text = book.NumberPages.ToString();
-                    this.SubjectTextBox.Text = book.Subject;
-                    this.PublisherTextBox.Text = book.Publisher;
-                    this.YearPublishedTextBox.Text = book.YearPublished;
-                    this.LanguageTextBox.Text = book.Language;
-                    this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
-                    this.DescriptionTextBox.Text = book.Description;
-                    this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Book not found.");
+                    string isbn = this.SearchResultsPatronListBox.SelectedValue.ToString();
+                    var book = API.GetBook(isbn);
+                    if (book != null)
+                    {
+                        this.IsbnTextBox.Text = book.ISBN;
+                        this.TitleTextBox.Text = book.Title;
+                        this.AuthorTextBox.Text = $"{book.Author.Person.Firstname} {book.Author.Person.Lastname}";
+                        this.NumPagesTextBox.Text = book.NumberPages.ToString();
+                        this.SubjectTextBox.Text = book.Subject;
+                        this.PublisherTextBox.Text = book.Publisher;
+                        this.YearPublishedTextBox.Text = book.YearPublished;
+                        this.LanguageTextBox.Text = book.Language;
+                        this.NumCopiesTextBox.Text = book.NumberOfCopies.ToString();
+                        this.DescriptionTextBox.Text = book.Description;
+                        this.NumberAvailableTextBox.Text = API.GetNumberAvailableBookCopies(book).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Book not found.");
+                    }
                 }
             }
         }
 
         private void ClearPatronButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearSearch();
+            ClearDetails();
+        }
+
+        private void ClearSearch()
+        {
             this.SearchPatronTextBox.Text = null;
             this.SearchResultsPatronListBox.ItemsSource = null;
+        }
+
+        private void ClearDetails()
+        {
             this.IsbnTextBox.Text = null;
             this.TitleTextBox.Text = null;
             this.AuthorTextBox.Text = null;

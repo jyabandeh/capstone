@@ -23,5 +23,10 @@ namespace LibraryInfoDataModelClassLibrary
         public virtual Cardholder Cardholder { get; set; }
 
         public virtual Librarian Librarian { get; set; }
+
+        public override string ToString()
+        {
+            return $"Person ID: {PersonID}\n{Firstname} {Lastname}";
+        }
     }
 }
