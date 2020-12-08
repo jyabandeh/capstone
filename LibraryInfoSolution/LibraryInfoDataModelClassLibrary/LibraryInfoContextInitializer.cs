@@ -60,7 +60,7 @@ namespace LibraryInfoDataModelClassLibrary
             context.SaveChanges();
         }
 
-        static List<Author> GetAuthorsFromXML()
+        public static List<Author> GetAuthorsFromXML()
         {
             //get contents of xml file
             var authorXML = (from d in XDocument.Load(@"XMLFiles\Authors.xml").Descendants("Author")
@@ -81,7 +81,7 @@ namespace LibraryInfoDataModelClassLibrary
             return authors;
         }
 
-        static List<Book> GetBooksFromXML()
+        public static List<Book> GetBooksFromXML()
         {
             var bookXML = (from d in XDocument.Load(@"XMLFiles\Books.xml").Descendants("Book")
                              select d).ToList();
@@ -113,7 +113,7 @@ namespace LibraryInfoDataModelClassLibrary
             return books;
         }
 
-        static List<Cardholder> GetCardholdersFromXML()
+        public static List<Cardholder> GetCardholdersFromXML()
         {
             var cardholderXML = (from d in XDocument.Load(@"XMLFiles\Cardholders.xml").Descendants("Cardholder")
                                  select d).ToList();
@@ -133,7 +133,7 @@ namespace LibraryInfoDataModelClassLibrary
             return cardholders;
         }
 
-        static List<CheckOutLog> GetCheckOutLogsFromXML()
+        public static List<CheckOutLog> GetCheckOutLogsFromXML()
         {
             var checkOutLogXML = (from d in XDocument.Load(@"XMLFiles\CheckOutLog.xml").Descendants("CheckOutLog")
                                   select d).ToList();
@@ -154,7 +154,7 @@ namespace LibraryInfoDataModelClassLibrary
             return checkOutLogs;
         }
 
-        static List<Librarian> GetLibrariansFromXML()
+        public static List<Librarian> GetLibrariansFromXML()
         {
             var librarianXML = (from d in XDocument.Load(@"XMLFiles\Librarians.xml").Descendants("Librarian")
                                 select d).ToList();
@@ -175,7 +175,7 @@ namespace LibraryInfoDataModelClassLibrary
             return librarians;
         }
 
-        static List<Person> GetPeopleFromXML()
+        public static List<Person> GetPeopleFromXML()
         {
             var personXML = (from d in XDocument.Load(@"XMLFiles\People.xml").Descendants("Person")
                              select d).ToList();

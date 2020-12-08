@@ -28,8 +28,10 @@ namespace LibraryInfoWpfApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Will only run this code if user is adding a new book rather than updating a selected book
-            if(this.AddNewBookButton.IsVisible)
+            if (this.AddNewBookButton.IsVisible)
+            {
                 DisplayAuthorsList();
+            }
         }
 
         private void AddNewBookButton_Click(object sender, RoutedEventArgs e)
